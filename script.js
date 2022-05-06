@@ -1,10 +1,32 @@
+//return a random rock, paper, scissor by computer
 function computerPlay(){ 
     const wordsToSplit = "Rock,Paper,Scissor";
     const arrayWordsToSplit = wordsToSplit.split(",");
     return arrayWordsToSplit[Math.floor(Math.random()*3)];
 }
 
+//return a prompt from user rock, paper, scissor
+function personPlay(){
+
+    let playerSelection = prompt("Enter rock, paper, scissor", "");
+
+    while(playerSelection.toLowerCase() != "rock" && playerSelection.toLowerCase() != "paper" && playerSelection.toLowerCase() != "scissor"){
+            
+        if(playerSelection === null){
+           break;
+        }
+        console.log(playerSelection);
+        playerSelection = prompt("Info is not acceptable");
+        
+    }  
+
+    return playerSelection;
+    
+}
+
+//return a result between player
 function resultPlay(playerSelection, computerSelection){
+
     p1 = playerSelection.toLowerCase();
     c1 = computerSelection.toLowerCase();
     resultLose = "You Lose! ";
@@ -17,27 +39,21 @@ function resultPlay(playerSelection, computerSelection){
     } else{
         return resultLose + computerSelection + " beats " + playerSelection; //possible wins for computer
     }
+    
 }
 
-function playRound(){
-    
+function playRound(){  
+
     let resultFinalPS = 0;
     let resultFinalCP = 0;
 
     for (let i = 1; i <= 5; i++){
-        //my code
-        let playerSelection = prompt("Enter rock, paper, scissor", "");
-
-        while(playerSelection.toLowerCase() != "rock" && playerSelection.toLowerCase() != "paper" && playerSelection.toLowerCase() != "scissor"){
-            
-            if(playerSelection === null){
-               break;
-            }
-            console.log(playerSelection);
-            playerSelection = prompt("Info is not acceptable");
-            
-        }
-
+        //ask user to input
+        let playerSelection = personPlay();
+        //check if null or not
+        if(playerSelection === null)
+            break;
+        //if not null then continue
         let computerSelection = computerPlay();
         console.log("Player 1: " + playerSelection + " Computer 1: " + computerSelection);
         let partialResult = resultPlay(playerSelection, computerSelection);
@@ -56,12 +72,10 @@ function playRound(){
 }
 
 function game(){
+
     playRound();
 }
 
 
+//start
 game();
-//const playerSelection = "rock";
-//const computerSelection = computerPlay();
-//console.log(computerSelection);
-//console.log(resultPlay(playerSelection,computerSelection));
